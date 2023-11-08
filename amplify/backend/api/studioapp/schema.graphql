@@ -1,0 +1,11 @@
+type Page1 @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name1: String
+  name2: String
+  namekana1: String
+  namekana2: String
+  birthday1: Int
+  birthday2: Int
+  birthday3: Int
+  sexuality: Int
+} 
