@@ -1,0 +1,57 @@
+Amplify Studio の開始方法(figmaなし)
+
+https://ap-southeast-2.admin.amplifyapp.com/admin/d3udulj8ap72fl/staging/home
+・データモデル作成
+　データ名と型を入力して「save and display」
+cd /c/Users/kyo23/Desktop/aws
+
+〇失敗手順
+mkdir studio-app && cd studio-app
+curl -sL https://aws-amplify.github.io/amplify-cli/install-win -o install.cmd
+　→install.cmdを実行（必要か不明）
+amplify pull --appId d3udulj8ap72fl --envName staging --yes
+　→更新があればやる（いったんなんもしない）
+cd ../
+npx create-react-app test-app
+UI Libraryから作成したDataを選択し「configure」、右タブの「initial project setup」
+cd test-app/
+npm install -g @aws-amplify/cli
+　→これは別途もうやってる
+npm install aws-amplify @aws-amplify/ui-react
+vim src/index.js
+vim src/App.js
+amplify pull --appId d3udulj8ap72fl --envName staging  --yes
+npm start
+　→確認だめ
+
+〇成功手順
+npx create-react-app test-app
+https://ap-southeast-2.admin.amplifyapp.com/admin/d3udulj8ap72fl/staging/components
+UI Libraryから作成したDataを選択し「configure」、右タブの「initial project setup」
+cd test-app/
+npm install aws-amplify @aws-amplify/ui-react
+amplify pull --appId d3udulj8ap72fl --envName staging  --yes
+vim src/index.js
+npm start
+→確認OK
+echo "# amplify-studio" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/yamakyo133/amplify-studio.git
+git push -u origin main
+git add .
+git commit -m "deploy"
+git push
+
+https://ap-southeast-2.console.aws.amazon.com/amplify/home?region=ap-southeast-2
+AWS amplify
+すべてのアプリ
+studioapp→ウェブアプリケーションをホスト
+　Githubを選択し、続行
+　作成したリポジトリ、mainブランチを選択し次へ→Environmentに「staging」、フルスタックの継続的デプロイ (CI/CD) を有効化にチェック、新しいロールを作成
+　　→別タブ開くので、そのまま次へ→次へ→ロールを作成
+　元のタブに戻って作成したロールを指定→次へ→保存してデプロイ
+　デプロイ確認
+https://main.d3udulj8ap72fl.amplifyapp.com/
