@@ -29,7 +29,6 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={studioTheme}>
         <App />
-        <Page1CreateForm />
     </ThemeProvider>
   </React.StrictMode>
 );
