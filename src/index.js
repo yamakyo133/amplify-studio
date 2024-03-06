@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
- Page1CreateForm
-} from './ui-components';
+//import {
+// Page1CreateForm
+//} from './ui-components';
 import { ThemeProvider } from "@aws-amplify/ui-react";
 import { Amplify } from 'aws-amplify';
 
