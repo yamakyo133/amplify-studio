@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-//import {
-// Page1CreateForm
-//} from './ui-components';
+import {
+ NewForm1
+} from './ui-components';
 import { ThemeProvider } from "@aws-amplify/ui-react";
 import { Amplify } from 'aws-amplify';
 
@@ -17,21 +17,21 @@ import { studioTheme } from "./ui-components";
 Amplify.configure(awsconfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-/*root.render(
+root.render(
   <React.StrictMode>
     <ThemeProvider theme={studioTheme}>
-	<Page1CreateForm />
+	<NewForm1 />
     </ThemeProvider>
   </React.StrictMode>
-);*/
-
+);
+/*
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={studioTheme}>
         <App />
     </ThemeProvider>
   </React.StrictMode>
-);
+);*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

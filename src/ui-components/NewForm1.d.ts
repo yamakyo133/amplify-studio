@@ -21,34 +21,31 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type Page1CreateFormInputValues = {
+export declare type NewForm1InputValues = {
     FamilyName?: string;
     FirstName?: string;
     Birthday?: number;
-    name1?: string;
 };
-export declare type Page1CreateFormValidationValues = {
+export declare type NewForm1ValidationValues = {
     FamilyName?: ValidationFunction<string>;
     FirstName?: ValidationFunction<string>;
     Birthday?: ValidationFunction<number>;
-    name1?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type Page1CreateFormOverridesProps = {
-    Page1CreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+export declare type NewForm1OverridesProps = {
+    NewForm1Grid?: PrimitiveOverrideProps<GridProps>;
     FamilyName?: PrimitiveOverrideProps<TextFieldProps>;
     FirstName?: PrimitiveOverrideProps<TextFieldProps>;
     Birthday?: PrimitiveOverrideProps<TextFieldProps>;
-    name1?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type Page1CreateFormProps = React.PropsWithChildren<{
-    overrides?: Page1CreateFormOverridesProps | undefined | null;
+export declare type NewForm1Props = React.PropsWithChildren<{
+    overrides?: NewForm1OverridesProps | undefined | null;
 } & {
     clearOnSuccess?: boolean;
-    onSubmit?: (fields: Page1CreateFormInputValues) => Page1CreateFormInputValues;
-    onSuccess?: (fields: Page1CreateFormInputValues) => void;
-    onError?: (fields: Page1CreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: Page1CreateFormInputValues) => Page1CreateFormInputValues;
-    onValidate?: Page1CreateFormValidationValues;
+    onSubmit?: (fields: NewForm1InputValues) => NewForm1InputValues;
+    onSuccess?: (fields: NewForm1InputValues) => void;
+    onError?: (fields: NewForm1InputValues, errorMessage: string) => void;
+    onChange?: (fields: NewForm1InputValues) => NewForm1InputValues;
+    onValidate?: NewForm1ValidationValues;
 } & React.CSSProperties>;
-export default function Page1CreateForm(props: Page1CreateFormProps): React.ReactElement;
+export default function NewForm1(props: NewForm1Props): React.ReactElement;

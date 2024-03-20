@@ -6,11 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField, useTheme } from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { Page1 } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function Page1CreateForm(props) {
+export default function NewForm1(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -21,30 +21,25 @@ export default function Page1CreateForm(props) {
     overrides,
     ...rest
   } = props;
-  const { tokens } = useTheme();
   const initialValues = {
     FamilyName: "",
     FirstName: "",
     Birthday: "",
-    name1: "",
   };
   const [FamilyName, setFamilyName] = React.useState(initialValues.FamilyName);
   const [FirstName, setFirstName] = React.useState(initialValues.FirstName);
   const [Birthday, setBirthday] = React.useState(initialValues.Birthday);
-  const [name1, setName1] = React.useState(initialValues.name1);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setFamilyName(initialValues.FamilyName);
     setFirstName(initialValues.FirstName);
     setBirthday(initialValues.Birthday);
-    setName1(initialValues.name1);
     setErrors({});
   };
   const validations = {
     FamilyName: [],
     FirstName: [],
     Birthday: [],
-    name1: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -66,16 +61,15 @@ export default function Page1CreateForm(props) {
   return (
     <Grid
       as="form"
-      rowGap={tokens.space.xs.value}
-      columnGap={tokens.space.large.value}
-      padding={tokens.space.medium.value}
+      rowGap="15px"
+      columnGap="15px"
+      padding="20px"
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
           FamilyName,
           FirstName,
           Birthday,
-          name1,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -105,12 +99,7 @@ export default function Page1CreateForm(props) {
               modelFields[key] = null;
             }
           });
-          const modelFieldsToSave = {
-            FamilyName: modelFields.FamilyName,
-            FirstName: modelFields.FirstName,
-            Birthday: modelFields.Birthday,
-          };
-          await DataStore.save(new Page1(modelFieldsToSave));
+          await DataStore.save(new Page1(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -123,7 +112,7 @@ export default function Page1CreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "Page1CreateForm")}
+      {...getOverrideProps(overrides, "NewForm1")}
       {...rest}
     >
       <TextField
@@ -138,7 +127,6 @@ export default function Page1CreateForm(props) {
               FamilyName: value,
               FirstName,
               Birthday,
-              name1,
             };
             const result = onChange(modelFields);
             value = result?.FamilyName ?? value;
@@ -165,7 +153,6 @@ export default function Page1CreateForm(props) {
               FamilyName,
               FirstName: value,
               Birthday,
-              name1,
             };
             const result = onChange(modelFields);
             value = result?.FirstName ?? value;
@@ -196,7 +183,6 @@ export default function Page1CreateForm(props) {
               FamilyName,
               FirstName,
               Birthday: value,
-              name1,
             };
             const result = onChange(modelFields);
             value = result?.Birthday ?? value;
@@ -210,32 +196,6 @@ export default function Page1CreateForm(props) {
         errorMessage={errors.Birthday?.errorMessage}
         hasError={errors.Birthday?.hasError}
         {...getOverrideProps(overrides, "Birthday")}
-      ></TextField>
-      <TextField
-        label="Label"
-        isRequired={false}
-        value={name1}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              FamilyName,
-              FirstName,
-              Birthday,
-              name1: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.name1 ?? value;
-          }
-          if (errors.name1?.hasError) {
-            runValidationTasks("name1", value);
-          }
-          setName1(value);
-        }}
-        onBlur={() => runValidationTasks("name1", name1)}
-        errorMessage={errors.name1?.errorMessage}
-        hasError={errors.name1?.hasError}
-        {...getOverrideProps(overrides, "name1")}
       ></TextField>
       <Flex
         justifyContent="space-between"
@@ -251,7 +211,7 @@ export default function Page1CreateForm(props) {
           {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
-          gap={tokens.space.large.value}
+          gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
