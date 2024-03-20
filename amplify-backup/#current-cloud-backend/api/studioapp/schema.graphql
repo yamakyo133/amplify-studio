@@ -1,6 +1,0 @@
-type Page1 @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  FamilyName: String
-  FirstName: String
-  Birthday: Int
-} 
